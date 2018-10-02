@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script src="http://code.jquery.com/jquery-3.2.1.min.js"></script>
+        <script type="text/javascript" src="script.js"></script>
+    </head>
+    <body>
+        <h1>Creative Lab #2</h1>
+        <div>
+            <form id="myForm">
+                <h2>Pick A Stock and Report Type:</h2>
+                <div>
+                    <input type="radio" id="mmm" name="stocks" value="mmm">3M</input><br>
+                    <input type="radio" id="atvi" name="stocks" value="atvi">Activision Blizzard</input><br>
+                    <input type="radio" id="googl" name="stocks" value="googl">Google</input><br>
+                    <input type="radio" id="intc" name="stocks" value="intc">Intel</input><br>
+                    <input type="radio" id="aapl" name="stocks" value="aapl">Apple</input><br>
+                </div>
+                <div>
+                    <input type="radio" id="book" name="report_type" value="book">Overview</input><br>
+                    <input type="radio" id="1d" name="report_type" value="1d"> One Day</input><br>
+                    <input type="radio" id="1m" name="report_type" value="1m">One Month</input><br>
+                    <input type="radio" id="3m" name="report_type" value="3m">Three Months</input><br>
+                    <input type="radio" id="6m" name="report_type" value="6m">Six Months</input><br>
+                </div>
+                <input type="submit" id="submit" name="Get statistics">Get statistics!</input>
+            </form>
+        </div>
+        <div id=results>
+            
+        </div>
+    </body>
+</html>
