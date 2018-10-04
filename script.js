@@ -42,13 +42,13 @@ function one_month(stock)
         success: function(parsed_json)
         {
             var everything ="<h4>You selected a ONE MONTH report:</h4>";
-            var low, high = get_low_high(parsed_json);
+            var stats = get_low_high(parsed_json);
             var opening = parsed_json[0]['open'];
             var o_date = parsed_json[0]['date'];
             var closing = parsed_json[parsed_json.length - 1]['close'];
             var c_date = parsed_json[parsed_json.length - 1]['date'];
             var change = diff(opening, closing);
-            everything+="<p>Over the last month " + stock + " had a low point of $" + low + " and a high point of $" + high + ".";
+            everything+="<p>Over the last month " + stock.toUpperCase() + " had a low point of $" + stats[0] + " and a high point of $" + stats[1] + ". ";
             everything +="They had a starting price of $" + opening + " on " + o_date + " and a ending price of $" + closing + " on " + c_date + " yeilding a " + change[1] + " of $" + change[0] + ".</p>";
             $("#results").html(everything);
         }
@@ -65,14 +65,20 @@ function one_day(stock)
         success: function(parsed_json)
         {
             var everything ="<h4>You selected a ONE DAY report:</h4>";
-            var low, high = get_low_high(parsed_json);
+            var stats = get_low_high(parsed_json);
             var opening = parsed_json[0]['open'];
             var o_time = parsed_json[0]['label'];
             var closing = parsed_json[parsed_json.length - 1]['close'];
             var c_time = parsed_json[parsed_json.length - 1]['label'];
             var change = diff(opening, closing);
-            everything+="<p>Today " + stock + " had a low point of $" + low + " and a high point of $" + high + ".";
+            everything+="<p>Today " + stock.toUpperCase() + " had a low point of $" + stats[0] + " and a high point of $" + stats[1] + ". ";
+            try
+            {
             everything +="They had a starting price of $" + opening + " at " + o_time + " and a ending price of $" + closing + " at " + c_time + " yeilding a " + change[1] + " of $" + change[0] + ".</p>";
+            }
+            catch(Exception){
+                
+            }
             $("#results").html(everything);
         }
     })
@@ -88,13 +94,13 @@ function three_month(stock)
         success: function(parsed_json)
         {
             var everything ="<h4>You selected a THREE MONTH report:</h4>";
-            var low, high = get_low_high(parsed_json);
+            var stats = get_low_high(parsed_json);
             var opening = parsed_json[0]['open'];
             var o_date = parsed_json[0]['date'];
             var closing = parsed_json[parsed_json.length - 1]['close'];
             var c_date = parsed_json[parsed_json.length - 1]['date'];
             var change = diff(opening, closing);
-            everything+="<p>Over the last three months " + stock + " had a low point of $" + low + " and a high point of $" + high + ".";
+            everything+="<p>Over the last three months " + stock.toUpperCase() + " had a low point of $" + stats[0] + " and a high point of $" + stats[1] + ". ";
             everything +="They had a starting price of $" + opening + " on " + o_date + " and a ending price of $" + closing + " on " + c_date + " yeilding a " + change[1] + " of $" + change[0] + ".</p>";
             $("#results").html(everything);
         }
@@ -117,7 +123,7 @@ function six_month(stock)
             var closing = parsed_json[parsed_json.length - 1]['close'];
             var c_date = parsed_json[parsed_json.length - 1]['date'];
             var change = diff(opening, closing);
-            everything+="<p>Over the last six months " + stock + " had a low point of $" + stats[0] + " and a high point of $" + stats[1] + ".";
+            everything+="<p>Over the last six months " + stock.toUpperCase() + " had a low point of $" + stats[0] + " and a high point of $" + stats[1] + ". ";
             everything +="They had a starting price of $" + opening + " on " + o_date + " and a ending price of $" + closing + " on " + c_date + " yeilding a " + change[1] + " of $" + change[0] + ".</p>";
             $("#results").html(everything);
         }
@@ -128,8 +134,10 @@ function get_low_high(json)
 {
     var worst_so_far = Infinity;
     var best_so_far = 0;
-    for(var i; i < json.length; i++)
+    for(var i = 0; i < json.length; i++)
     {
+        console.log(json[i]['low']);
+        console.log(json[i]['high']);
         if(json[i]['low'] < worst_so_far)
         {
             worst_so_far = json[i]['low'];
@@ -155,8 +163,8 @@ function book(stock)
             var close = parsed_json['quote']['close'];
             var change= diff(open, close);
             var ytd = getytd(parsed_json['quote']['ytdChange']);
-            var everything ="<h4>You selected a BOOK report for " + parsed_json['quote']['companyName'] + ":</h4>";
-            everything+="<p>Today " + stock + " had a low point of $" + parsed_json['quote']['low'] + " and a high point of $" + parsed_json['quote']['high'] + ". ";
+            var everything ="<h4>You selected a BOOK report:</h4>";
+            everything+="<p>Today " + stock.toUpperCase() + " had a low point of $" + parsed_json['quote']['low'] + " and a high point of $" + parsed_json['quote']['high'] + ". ";
             everything +="They had a opening price of $" + open + " and a ending price of $" + close + " yeilding a " + change[1] + " of $" + change[0] + ". ";
             everything += " They had a 52 week high of " + parsed_json['quote']['week53High'] + " and a 52 week low of " + parsed_json['quote']['week53Low'] + ". ";
             everything += "Year-to-Day change is $ " + ytd[0] + " so the stock is looking " + ytd[1] +".";
@@ -186,15 +194,14 @@ function diff(first, second)
     var temp = first - second;
     if(temp < 0)
     {
-        temp = temp + (2*temp);
-        return [temp, "increase"];
+        return [Math.abs(temp), "increase"];
     }
     else if(temp > 0)
     {
-        return [temp, "decrease"];
+        return [Math.abs(temp), "decrease"];
     }
     else if(temp == 0)
     {
-        return [temp, "constant"];
+        return [Math.abs(temp), "constant"];
     }
 }
