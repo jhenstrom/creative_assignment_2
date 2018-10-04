@@ -1,0 +1,42 @@
+body {
+    font-family:Verdana sans-serif;
+    margin:10px 10%;
+    width:80%;
+    background-color:#008c1e;
+    display:inline-block;
+}
+
+#container {
+    background-color:#f4f4f4;
+    min-height:400px;
+    padding:1px 15px 20px 20px;
+    border-radius:20px;
+    overflow:auto;
+}
+
+.horizontal_div {
+	float: left;
+	height:auto;
+	width: 45%;
+	min-width:375px;
+}
+
+.horizontal_div + .horizontal_div {
+    margin-left:50px;
+}
+
+#left {
+	border-radius: 15px;
+	padding: 6px;
+}
+td{
+    width:80%;
+}
+
+#submit{
+    height:2em;
+    margin-top:30px;
+	width: 100%;
+	border-radius: 25px;
+}
+

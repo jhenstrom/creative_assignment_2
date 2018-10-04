@@ -41,15 +41,15 @@ function one_month(stock)
         dataType: "json",
         success: function(parsed_json)
         {
-            var everything ="<h4>You selected a ONE MONTH report:</h4>";
+            var everything ="<h4>You selected a <b>ONE MONTH</b> report:</h4>";
             var stats = get_low_high(parsed_json);
             var opening = parsed_json[0]['open'];
             var o_date = parsed_json[0]['date'];
             var closing = parsed_json[parsed_json.length - 1]['close'];
             var c_date = parsed_json[parsed_json.length - 1]['date'];
             var change = diff(opening, closing);
-            everything+="<p>Over the last month " + stock.toUpperCase() + " had a low point of $" + stats[0] + " and a high point of $" + stats[1] + ". ";
-            everything +="They had a starting price of $" + opening + " on " + o_date + " and a ending price of $" + closing + " on " + c_date + " yeilding a " + change[1] + " of $" + change[0] + ".</p>";
+            everything+="<p>Over the last month <b>" + stock.toUpperCase() + "</b> had a low point of <b>$" + stats[0].toFixed(2) + "</b> and a high point of <b>$" + stats[1].toFixed(2) + "</b>. ";
+            everything +="They had a starting price of <b>$" + opening.toFixed(2) + "</b> on <b>" + o_date + "</b> and a ending price of <b>$" + closing.toFixed(2) + "</b> on <b>" + c_date + "</b> yeilding a <b>" + change[1] + "</b> of <b>$" + change[0].toFixed(2) + "</b>.</p>";
             $("#results").html(everything);
         }
     })
@@ -64,17 +64,17 @@ function one_day(stock)
         dataType: "json",
         success: function(parsed_json)
         {
-            var everything ="<h4>You selected a ONE DAY report:</h4>";
+            var everything ="<h4>You selected a <b>ONE DAY</b> report:</h4>";
             var stats = get_low_high(parsed_json);
             var opening = parsed_json[0]['open'];
             var o_time = parsed_json[0]['label'];
             var closing = parsed_json[parsed_json.length - 1]['close'];
             var c_time = parsed_json[parsed_json.length - 1]['label'];
             var change = diff(opening, closing);
-            everything+="<p>Today " + stock.toUpperCase() + " had a low point of $" + stats[0] + " and a high point of $" + stats[1] + ". ";
+            everything+="<p>Today <b>" + stock.toUpperCase() + "</b> had a low point of <b>$" + stats[0].toFixed(2) + "</b> and a high point of <b>$" + stats[1].toFixed(2) + "</b>. ";
             try
             {
-            everything +="They had a starting price of $" + opening + " at " + o_time + " and a ending price of $" + closing + " at " + c_time + " yeilding a " + change[1] + " of $" + change[0] + ".</p>";
+            everything +="They had a starting price of <b>$" + opening.toFixed(2) + "</b> at <b>" + o_time + "</b> and a ending price of <b>$" + closing.toFixed(2) + "</b> at <b>" + c_time + "</b> yeilding a <b>" + change[1] + "</b> of <b>$" + change[0].toFixed(2) + "</b>.</p>";
             }
             catch(Exception){
                 
@@ -93,15 +93,15 @@ function three_month(stock)
         dataType: "json",
         success: function(parsed_json)
         {
-            var everything ="<h4>You selected a THREE MONTH report:</h4>";
+            var everything ="<h4>You selected a <b>THREE MONTH</b> report:</h4>";
             var stats = get_low_high(parsed_json);
             var opening = parsed_json[0]['open'];
             var o_date = parsed_json[0]['date'];
             var closing = parsed_json[parsed_json.length - 1]['close'];
             var c_date = parsed_json[parsed_json.length - 1]['date'];
             var change = diff(opening, closing);
-            everything+="<p>Over the last three months " + stock.toUpperCase() + " had a low point of $" + stats[0] + " and a high point of $" + stats[1] + ". ";
-            everything +="They had a starting price of $" + opening + " on " + o_date + " and a ending price of $" + closing + " on " + c_date + " yeilding a " + change[1] + " of $" + change[0] + ".</p>";
+            everything+="<p>Over the last three months <b>" + stock.toUpperCase() + "</b> had a low point of <b>$" + stats[0].toFixed(2) + "</b> and a high point of <b>$" + stats[1].toFixed(2) + "</b>. ";
+            everything +="They had a starting price of <b>$" + opening.toFixed(2) + "</b> on <b>" + o_date + "</b> and a ending price of <b>$" + closing.toFixed(2) + "</b> on <b>" + c_date + "</b> yeilding a <b>" + change[1] + "</b> of <b>$" + change[0].toFixed(2) + "</b>.</p>";
             $("#results").html(everything);
         }
     })
@@ -116,15 +116,15 @@ function six_month(stock)
         dataType: "json",
         success: function(parsed_json)
         {
-            var everything ="<h4>You selected a SIX MONTH report:</h4>";
+            var everything ="<h4>You selected a <b>SIX MONTH</b> report:</h4>";
             var stats = get_low_high(parsed_json);
             var opening = parsed_json[0]['open'];
             var o_date = parsed_json[0]['date'];
             var closing = parsed_json[parsed_json.length - 1]['close'];
             var c_date = parsed_json[parsed_json.length - 1]['date'];
             var change = diff(opening, closing);
-            everything+="<p>Over the last six months " + stock.toUpperCase() + " had a low point of $" + stats[0] + " and a high point of $" + stats[1] + ". ";
-            everything +="They had a starting price of $" + opening + " on " + o_date + " and a ending price of $" + closing + " on " + c_date + " yeilding a " + change[1] + " of $" + change[0] + ".</p>";
+            everything+="<p>Over the last six months <b>" + stock.toUpperCase() + "</b> had a low point of <b>$" + stats[0].toFixed(2) + "</b> and a high point of <b>$" + stats[1].toFixed(2) + "</b>. ";
+            everything +="They had a starting price of <b>$" + opening.toFixed(2) + "</b> on <b>" + o_date + "</b> and a ending price of <b>$" + closing.toFixed(2) + "</b> on <b>" + c_date + "</b> yeilding a <b>" + change[1] + "</b> of <b>$" + change[0].toFixed(2) + "</b>.</p>";
             $("#results").html(everything);
         }
     })
@@ -138,7 +138,7 @@ function get_low_high(json)
     {
         console.log(json[i]['low']);
         console.log(json[i]['high']);
-        if(json[i]['low'] < worst_so_far)
+        if(json[i]['low'] < worst_so_far && json[i]['low'] != -1)
         {
             worst_so_far = json[i]['low'];
         }
@@ -163,11 +163,11 @@ function book(stock)
             var close = parsed_json['quote']['close'];
             var change= diff(open, close);
             var ytd = getytd(parsed_json['quote']['ytdChange']);
-            var everything ="<h4>You selected a BOOK report:</h4>";
-            everything+="<p>Today " + stock.toUpperCase() + " had a low point of $" + parsed_json['quote']['low'] + " and a high point of $" + parsed_json['quote']['high'] + ". ";
-            everything +="They had a opening price of $" + open + " and a ending price of $" + close + " yeilding a " + change[1] + " of $" + change[0] + ". ";
-            everything += " They had a 52 week high of " + parsed_json['quote']['week53High'] + " and a 52 week low of " + parsed_json['quote']['week53Low'] + ". ";
-            everything += "Year-to-Day change is $ " + ytd[0] + " so the stock is looking " + ytd[1] +".";
+            var everything ="<h4>You selected a <b>BOOK</b> report:</h4>";
+            everything+="<p>Today <b>" + stock.toUpperCase() + "</b> had a low point of <b>$" + parsed_json['quote']['low'].toFixed(2) + "</b> and a high point of <b>$" + parsed_json['quote']['high'].toFixed(2) + "</b>. ";
+            everything +="They had a opening price of <b>$" + open.toFixed(2) + "</b> and a ending price of <b>$" + close.toFixed(2) + "</b> yeilding a <b>" + change[1] + "</b> of <b>$" + change[0].toFixed(2) + "</b>. ";
+            everything += " They had a 52 week high of <b>$" + parsed_json['quote']['week52High'].toFixed(2) + "</b> and a 52 week low of <b>$" + parsed_json['quote']['week52Low'].toFixed(2) + "</b>. ";
+            everything += "Year-to-Day change is <b>$ " + ytd[0].toFixed(2) + "</b> so the stock is looking <b>" + ytd[1] +"</b>.";
             $("#results").html(everything);
         }
     })
@@ -175,17 +175,17 @@ function book(stock)
 
 function getytd(number)
 {
-    if(number < 0)
+    if(number < -0.1)
     {
         return [number, "weak"];
     }
-    else if(number > 0)
+    else if(number > 0.1)
     {
         return [number, "strong"];
     }
-    else if(number == 0)
+    else
     {
-         return [number, "neutral"];
+         return [number, "steady"];
     }
 }
 
