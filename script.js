@@ -35,6 +35,7 @@ $(document).ready(function()
 function one_month(stock)
 {
     var myurl= "https://api.iextrading.com/1.0/stock/" + stock + "/chart/1m";
+    console.log(myurl);
     $.ajax({
         url: myurl,
         dataType: "json",
@@ -57,6 +58,7 @@ function one_month(stock)
 function one_day(stock)
 {
     var myurl= "https://api.iextrading.com/1.0/stock/" + stock + "/chart/1d";
+    console.log(myurl);
     $.ajax({
         url: myurl,
         dataType: "json",
@@ -79,6 +81,7 @@ function one_day(stock)
 function three_month(stock)
 {
     var myurl= "https://api.iextrading.com/1.0/stock/" + stock + "/chart/3m";
+    console.log(myurl);
     $.ajax({
         url: myurl,
         dataType: "json",
@@ -101,6 +104,7 @@ function three_month(stock)
 function six_month(stock)
 {
     var myurl= "https://api.iextrading.com/1.0/stock/" + stock + "/chart/6m";
+    console.log(myurl);
     $.ajax({
         url: myurl,
         dataType: "json",
@@ -141,20 +145,21 @@ function get_low_high(json)
 function book(stock)
 {
     var myurl= "https://api.iextrading.com/1.0/stock/" + stock + "/book";
+    console.log(myurl);
     $.ajax({
         url: myurl,
         dataType: "json",
         success: function(parsed_json)
         {
-            var open = parsed_json['open'];
-            var close = parsed_json['close'];
+            var open = parsed_json['quote']['open'];
+            var close = parsed_json['quote']['close'];
             var change, sign = diff(open, close);
-            var ytd, ytd_sign = getytd(parsed_json['ytdChange']);
-            var everything ="<h4>You selected a BOOK report for " + parsed_json['companyName'] + ":</h4>";
-            everything+="<p>Today " + stock + " had a low point of $" + parsed_json['low'] + "and a high point of $" + parsed_json['high'] + ".";
-            everything +="They had a opening price of $" + open + " and a ending price of $" + close + "yeilding a " + sign + " of $" + change + ".";
-            everything += " They had a 52 week high of " + parsed_json['week53High'] + " and a 52 week low of " + parsed_json['week53Low'] + ". ";
-            everything += "Year-to-Day change is at " + ytd + " so the stock is looking " + ytd_sign +".";
+            var ytd, ytd_sign = getytd(parsed_json['quote']['ytdChange']);
+            var everything ="<h4>You selected a BOOK report for " + parsed_json['quote']['companyName'] + ":</h4>";
+            everything+="<p>Today " + stock + " had a low point of $" + parsed_json['quote']['low'] + " and a high point of $" + parsed_json['quote']['high'] + ". ";
+            everything +="They had a opening price of $" + open + " and a ending price of $" + close + " yeilding a " + sign + " of $" + change + ". ";
+            everything += " They had a 52 week high of " + parsed_json['quote']['week53High'] + " and a 52 week low of " + parsed_json['quote']['week53Low'] + ". ";
+            everything += "Year-to-Day change is $ " + ytd + " so the stock is looking " + ytd_sign +".";
             $("#results").html(everything);
         }
     })
